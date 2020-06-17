@@ -1,11 +1,7 @@
 package Testing;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.sql.Date;
 import java.util.Scanner;
 
-import Product.*;
+
 
 public class ShopApp {
 
@@ -31,6 +27,7 @@ public class ShopApp {
 			System.out.println("Do you want to Continue:(1.Yes / 2.No ) :");
 			choice=sc.nextInt();
 		}
+		sc.close();
 
 	}
 

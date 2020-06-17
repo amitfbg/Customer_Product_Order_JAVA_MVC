@@ -2,11 +2,13 @@ package Product;
 import java.util.*;
 public class Product
 {
+	//Variables Declared
 	private String pCode,pName,pCatg;
 	private int pWt,qoh;
 	private Date mfgDate,expDate;
 	private double pCost;
 	String message;
+	//Constructor to initialize the variables
 	public Product()
 	{
 		pCode=pName=pCatg=null;
@@ -17,14 +19,14 @@ public class Product
 		
 	}
 	
-	//business method
+	//Method where the price range for Product is processed for further functionality
 	public ArrayList<Product> processProductData(double lp,double up)
 	{
-		ArrayList<Product> aList=new ArrayList<Product>();
-		ProductDAO pDAO=new ProductDAO();
-		aList=pDAO.searchProduct(lp,up);
+		ArrayList<Product> aList=new ArrayList<Product>();//Initializing the ArrayList so that the processed data can be stored
+		ProductDAO pDAO=new ProductDAO(); //Object Creation for ProductDAO class so that we can call the search method which uses database connectivity
+		aList=pDAO.searchProduct(lp,up); // searchProduct method of class ProductDAO is called and the data is stored in the arraylist object.
 		
-		return aList;
+		return aList; // finally we are returning the arraylist
 	}
 
 	//Getter and Setter Methods

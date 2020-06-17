@@ -7,24 +7,27 @@ import java.sql.*;
 import java.sql.Date;
 public class ProductDAO
 {
-	Connection con;
-	PreparedStatement pstat;
-	ResultSet rs;
-	MyConnection mCon;
-	Product p[];
+	Connection con; // con is a variable of Connection type
+	PreparedStatement pstat;  // pstat is a variable of PreparedStatement type
+	ResultSet rs; // rs is a variable of ResultSet
+	MyConnection mCon; //object declared of MyConnection Class
+	Product p[]; // initializing an array of Product type
 	
+	//Constructor
 	public ProductDAO()
 	{
 		con=null;
 		pstat=null;
 		rs=null;
-		mCon=new MyConnection();
+		mCon=new MyConnection();//object creation of MyConnection
 	}
 	
+	//AddProduct method which at first makes the connection with database
+	//After SuccessFul connection it will insert data into Product Table of database
 	public void AddProduct(Product p)
 	{
 		try {
-			con=mCon.connect();
+			con=mCon.connect(); //creating the connection to database
 			pstat=con.prepareStatement("insert into Product values(?,?,?,?,?,?,?)");
 			pstat.setString(1, p.getpCode());
 			pstat.setString(2,p.getpName());
@@ -46,6 +49,8 @@ public class ProductDAO
 		}
 	}
 	
+	//searchProduct method which takes the price range as input and stores the output in arrayList 
+	//we use arraylist as we know that they may be more than 1 product
 	public ArrayList<Product> searchProduct(double lp,double up)
 	{
 		ArrayList<Product> arList=new ArrayList<Product>();
@@ -58,7 +63,7 @@ public class ProductDAO
 			pstat.setDouble(2,up);
 			rs=pstat.executeQuery();
 			
-			p=new Product[100];
+			p=new Product[100];// array of Product is declared
 			for(int i=0; i<100; i++)
 			{
 				p[i]=new Product();
@@ -87,7 +92,7 @@ public class ProductDAO
 			{
 				int ctr1=0;
 				String msg="---NO PRODUCT FOUND---";
-				p[ctr].setMessage(msg);
+				p[ctr1].setMessage(msg);
 				arList.add(p[ctr1]);
 			}
 			con.close();

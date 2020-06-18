@@ -15,6 +15,7 @@ public class ShopApp {
 			System.out.println("------Enter Your Choice------");
 			System.out.println("1 for Product Add in Database :");
 			System.out.println("2 for Product Search using Given Range :");
+			System.out.println("3 for Customer Add in Database : ");
 			int select = sc.nextInt();
 			switch (select) {
 			case 1:
@@ -22,6 +23,9 @@ public class ShopApp {
 				break;
 			case 2:
 				dps.Psearch();
+				break;
+			case 3:
+				dps.Customer_add();
 				break;
 			}
 			System.out.println("Do you want to Continue:(1.Yes / 2.No ) :");

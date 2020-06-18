@@ -75,35 +75,7 @@ public class Customer {
 			System.out.println(e);
 		}
 	}
-	public void accept(String custID,String custFName,String custLName,String sex,long contactNo,String city,String country) {
-		this.custID=custID;
-		this.custFName=custFName;
-		this.custLName=custLName;
-		this.sex=sex;
-		this.contactNo=contactNo;
-		this.city=city;
-		this.country=country;
-		try {
-		pstate=con.prepareStatement("insert into Customer values(?,?,?,?,?,?,?)");
-		pstate.setString(1, this.custID);
-		pstate.setString(2,this.custFName);
-		pstate.setString(3,this.custLName);
-		pstate.setString(4,this.sex);
-		pstate.setLong(5,this.contactNo);
-		pstate.setString(6, this.city);
-		pstate.setString(7,this.country);
-		int row=pstate.executeUpdate();
-		if(row!=0) {
-			System.out.println("Inserted");
-		}
-		else {
-			System.out.println("Not Inserted");
-		}
-		}
-		catch(Exception e) {
-			System.out.println(e);
-		}
-	}
+
 	public static void display(String custID) {
 		try {
 			pstate=con.prepareStatement("Select * from Customer where custID=?");

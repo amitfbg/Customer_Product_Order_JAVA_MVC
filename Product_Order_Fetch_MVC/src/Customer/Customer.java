@@ -9,6 +9,7 @@ public class Customer {
 	private long contactNo; 
 	private String city; 
 	private String country;
+	private String message;
 	private static Connection con;
 	private static PreparedStatement pstate;
 	private static ResultSet rs;
@@ -134,6 +135,12 @@ public class Customer {
 		s+=("City:"+this.city+"\n");
 		s+=("Country:"+this.country+"\n");
 		return s;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 

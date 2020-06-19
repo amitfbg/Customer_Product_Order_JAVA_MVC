@@ -3,6 +3,7 @@ package Customer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import Database_Connection.MyConnection;
 
@@ -21,7 +22,7 @@ public class Customer_DAO {
 		rs=null;
 		mCon=new MyConnection();//object creation of MyConnection
 	}
-	
+	//Add Customer method
 	public void Add_Customer_DAO(Customer c)
 	{
 		try {
@@ -48,6 +49,46 @@ public class Customer_DAO {
 			}
 		
 		}
+	//Search Customer Method
+	public ArrayList<Customer> Search_Customer_DAO(String cid)
+	{
+		ArrayList<Customer> arlist = new ArrayList<Customer>();
+		try {
+			con=mCon.connect();
+			pstate=con.prepareStatement("Select * from Customer where custID=?");
+			pstate.setString(1, cid);
+			rs=pstate.executeQuery();
+			Customer c=new Customer();
+			if(rs.next())
+			{
+				
+				c.setCustID(rs.getString(1));
+				c.setCustFName(rs.getString(2));
+				c.setCustLName(rs.getString(3));
+				c.setSex(rs.getString(4));
+				c.setContactNo(rs.getLong(5));
+				c.setCity(rs.getString(6));
+				c.setCountry(rs.getString(7));
+				arlist.add(c);
+			}
+			else
+			{
+				String msg="Sorry!!!!!! No Customer Found :( ";
+				c.setMessage(msg);
+				arlist.add(c);
+			}
+			con.close();
+			
+			
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		
+		return arlist;
+		
+	}
 	
 
 }

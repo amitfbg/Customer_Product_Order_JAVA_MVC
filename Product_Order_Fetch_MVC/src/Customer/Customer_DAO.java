@@ -73,7 +73,7 @@ public class Customer_DAO {
 			}
 			else
 			{
-				String msg="Sorry!!!!!! No Customer Found :( ";
+				String msg="Sorry";
 				c.setMessage(msg);
 				arlist.add(c);
 			}

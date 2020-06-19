@@ -20,9 +20,10 @@ public class Product
 	}
 	
 	//Method where the price range for Product is processed for further functionality
-	public ArrayList<Product> processProductData(double lp,double up)
+	public Map<String,Double> processProductData(double lp,double up)
 	{
-		ArrayList<Product> aList=new ArrayList<Product>();//Initializing the ArrayList so that the processed data can be stored
+		//ArrayList<Product> aList=new ArrayList<Product>();//Initializing the ArrayList so that the processed data can be stored
+		Map<String,Double> aList=new HashMap<String,Double>();
 		ProductDAO pDAO=new ProductDAO(); //Object Creation for ProductDAO class so that we can call the search method which uses database connectivity
 		aList=pDAO.searchProduct(lp,up); // searchProduct method of class ProductDAO is called and the data is stored in the arraylist object.
 		

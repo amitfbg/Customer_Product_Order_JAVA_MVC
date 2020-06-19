@@ -1,5 +1,6 @@
 package Order;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -21,6 +22,34 @@ public class OrdersDAO {
 		rs=null;
 		mCon=new MyConnection();
 	}	
+	
+	
+	public void OrderAdd(Orders o)
+	{
+		try {
+			con=mCon.connect();
+			pstat=con.prepareStatement("insert into orders values(?,?,?,?,?,?,?,?)");
+			pstat.setString(1,o.getOrderNo());
+			pstat.setDate(2, (Date) o.getOrderDate());
+			pstat.setString(3, o.getCustID());
+			pstat.setString(4, o.getProdCode());
+			pstat.setInt(5, o.getQtyPurchased());
+			pstat.setDouble(6, o.getTotBillAmt());
+			pstat.setString(7, o.getTransactionID());
+			pstat.setString(8, o.getPaymentType());
+			int row=pstat.executeUpdate();
+			if(row!=0) {
+				System.out.println("Inserted");
+			}
+			else {
+				System.out.println("Not Inserted");
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
+	}
 	
 	public ArrayList<Orders> searchOrders(String oId)
 	{
@@ -49,8 +78,8 @@ public class OrdersDAO {
 					//p[ctr].setOrderDate(rs.getDate(2));
 					p[ctr].setCustID(rs.getString(2));
 					p[ctr].setProdCode(rs.getString(3));
-					p[ctr].setQtyPurchased(rs.getString(4));
-					p[ctr].setTotBillAmt(rs.getString(5));
+					p[ctr].setQtyPurchased(rs.getInt(4));
+					p[ctr].setTotBillAmt(rs.getDouble(5));
 					//p[ctr].setTransactionID(rs.getString(7));
 					//p[ctr].setPaymentType(rs.getString(8));
 					arList.add(p[ctr]);

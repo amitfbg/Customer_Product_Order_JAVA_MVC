@@ -51,9 +51,9 @@ public class ProductDAO
 	
 	//searchProduct method which takes the price range as input and stores the output in arrayList 
 	//we use arraylist as we know that they may be more than 1 product
-	public ArrayList<Product> searchProduct(double lp,double up)
+	public Map<String,Double> searchProduct(double lp,double up)
 	{
-		ArrayList<Product> arList=new ArrayList<Product>();
+		Map<String,Double> a=null;
 		try
 		{
 			con=mCon.connect();
@@ -63,7 +63,40 @@ public class ProductDAO
 			pstat.setDouble(2,up);
 			rs=pstat.executeQuery();
 			
-			p=new Product[100];// array of Product is declared
+			
+			if(rs.next()) {
+				a=new HashMap<String,Double>();
+				do {
+					
+					System.out.println("---------------AVAILABE PRODUCT DETAILS----------------------");
+					System.out.println("Product No:"+(a.size()+1));
+					String pcode=rs.getString(1);
+					System.out.println("Product Code:"+pcode);
+					System.out.println("Product Name:"+rs.getString(2));
+					System.out.println("Product Weight:"+rs.getInt(3));
+					System.out.println("Product Category:"+rs.getString(4));
+					System.out.println("MFG Date:"+rs.getDate(5));
+					System.out.println("Exp Date:"+rs.getDate(6));
+					double co=rs.getDouble(7);
+					System.out.println("Cost:"+co);
+					System.out.println("-------------------------------------");
+					a.put(pcode, co);
+				}while(rs.next());
+			}
+			else {
+				System.out.println("No Record found");
+				a=null;
+			}
+			return a;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+			
+			
+			
+			/*p=new Product[100];// array of Product is declared
 			for(int i=0; i<100; i++)
 			{
 				p[i]=new Product();
@@ -102,7 +135,7 @@ public class ProductDAO
 		catch(Exception e)
 		{
 			System.out.println("Unabele to fetch");
-		}
-		return arList;
+		} */
+		//return arList;
 	}
 }

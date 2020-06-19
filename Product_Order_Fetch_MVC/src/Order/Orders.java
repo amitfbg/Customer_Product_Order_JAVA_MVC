@@ -5,16 +5,20 @@ import java.util.ArrayList;
 import java.util.Date;
 public class Orders
 {
-	private String orderNo,custID,prodCode,qtyPurchased,totBillAmt,transactionID,paymentType;
+	private String orderNo,custID,prodCode,paymentType,transactionID;
 	private Date orderDate;
+	private double totBillAmt;
+	private int qtyPurchased;
 	String message;
 	
 	//constructor 
 	public Orders()
 	{
-		orderNo=custID=prodCode=qtyPurchased=totBillAmt=transactionID=paymentType=null;
+		orderNo=custID=prodCode=transactionID=paymentType=null;
 		orderDate=null;
 		message=null;
+		qtyPurchased=0;
+		totBillAmt=0.0;
 		
 	}
 	
@@ -43,19 +47,19 @@ public class Orders
 		this.prodCode = prodCode;
 	}
 
-	public String getQtyPurchased() {
+	public int getQtyPurchased() {
 		return qtyPurchased;
 	}
 
-	public void setQtyPurchased(String qtyPurchased) {
+	public void setQtyPurchased(int qtyPurchased) {
 		this.qtyPurchased = qtyPurchased;
 	}
 
-	public String getTotBillAmt() {
+	public double getTotBillAmt() {
 		return totBillAmt;
 	}
 
-	public void setTotBillAmt(String totBillAmt) {
+	public void setTotBillAmt(double totBillAmt) {
 		this.totBillAmt = totBillAmt;
 	}
 
@@ -94,8 +98,8 @@ public class Orders
 	// business method
 	public ArrayList<Orders> processOrdersData(String oId) {
 		ArrayList<Orders> aList = new ArrayList<Orders>();
-		OrdersDAO pDAO = new OrdersDAO();
-		aList = pDAO.searchOrders(oId);
+		OrdersDAO ODAO = new OrdersDAO();
+		aList = ODAO.searchOrders(oId);
 
 		return aList;
 	}

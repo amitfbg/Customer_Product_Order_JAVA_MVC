@@ -3,11 +3,10 @@ import java.util.ArrayList;
 
 public class Orders_Controller {
 	ArrayList<Orders> arrList;
-	Orders pd;
 	OrdersSearch_Output pso;
+	
 	public Orders_Controller()
 	{
-		pd=new Orders();
 		arrList=new ArrayList<Orders>();
 		pso=new OrdersSearch_Output();
 	}
@@ -21,6 +20,7 @@ public class Orders_Controller {
 	
 	public void acceptData(String oId)
 	{
+		Orders pd=new Orders();
 		arrList=pd.processOrdersData(oId);
 		displayData();
 		
@@ -28,6 +28,12 @@ public class Orders_Controller {
 	public void displayData()
 	{
 		pso.display(arrList);
+	}
+	
+	public void Order_Add(Orders o) {
+		OrdersDAO Odao=new OrdersDAO();
+		Odao.OrderAdd(o);
+		
 	}
 
 }

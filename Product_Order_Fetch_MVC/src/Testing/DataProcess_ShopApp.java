@@ -97,6 +97,7 @@ public class DataProcess_ShopApp {
 		}while(!country.equalsIgnoreCase("india"));
 		cadd.setCountry(country);
 		//customer COntroller object
+		
 		Customer_Controller ccon=new Customer_Controller();
 		ccon.AddCustomer(cadd);
 		

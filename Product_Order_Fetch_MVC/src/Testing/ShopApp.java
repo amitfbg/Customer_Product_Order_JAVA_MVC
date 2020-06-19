@@ -1,6 +1,8 @@
 package Testing;
 import java.util.Scanner;
 
+import Product.ProductAdd_Input;
+
 
 
 public class ShopApp {
@@ -8,6 +10,7 @@ public class ShopApp {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		DataProcess_ShopApp dps=new DataProcess_ShopApp();
+		ProductAdd_Input pai=new ProductAdd_Input();
 		
 
 		int choice = 1;
@@ -19,7 +22,7 @@ public class ShopApp {
 			int select = sc.nextInt();
 			switch (select) {
 			case 1:
-				dps.Add();
+				pai.Add();
 				break;
 			case 2:
 				dps.Psearch();

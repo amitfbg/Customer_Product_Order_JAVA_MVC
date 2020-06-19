@@ -1,6 +1,7 @@
 package Testing;
 import java.util.Scanner;
 
+import Customer.CustomerAdd_Input;
 import Product.ProductAdd_Input;
 
 
@@ -11,6 +12,7 @@ public class ShopApp {
 		Scanner sc = new Scanner(System.in);
 		DataProcess_ShopApp dps=new DataProcess_ShopApp();
 		ProductAdd_Input pai=new ProductAdd_Input();
+		CustomerAdd_Input cai=new CustomerAdd_Input();
 		
 
 		int choice = 1;
@@ -28,7 +30,7 @@ public class ShopApp {
 				dps.Psearch();
 				break;
 			case 3:
-				dps.Customer_add();
+				cai.Customer_add();
 				break;
 			}
 			System.out.println("Do you want to Continue:(1.Yes / 2.No ) :");
